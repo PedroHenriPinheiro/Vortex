@@ -21,5 +21,12 @@ export const createUserService = async(data:any) => {
 };
 
 export const getUserService = async() => {
-    return await prisma.users.findMany();
+    return await prisma.users.findMany({
+        select: {
+            id: true,
+            name: true,
+            email: true,
+            createdAt: true,
+        }
+    });
 }
