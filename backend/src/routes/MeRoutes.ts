@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { getMeService } from "../services/MeService.js";
+import { getMe } from "../controllers/MeController.js";
 
 const router = Router();
 
-router.get("/", getMeService);
+router.get("/", getMe);
 
 export default router;
