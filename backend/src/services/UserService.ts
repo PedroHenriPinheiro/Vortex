@@ -2,6 +2,17 @@ import {prisma} from "../config/Prisma.js";
 import bcrypt from "bcrypt";
 
 export const createUserService = async(data:any) => {
+    const UserAlreadyExists = await prisma.users.findUnique({
+        where: {
+            email: data.email,
+        }
+    })
+
+    if(UserAlreadyExists){
+        return null
+    }
+
+
     const hashPassword = await bcrypt.hash(data.password, 10);
 
     const user = await prisma.users.create({
