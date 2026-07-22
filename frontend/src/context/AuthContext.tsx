@@ -1,4 +1,6 @@
 import type { User } from "../types/User";
+import { AuthContext } from "../hooks/UseAuth";
+import { useContext } from "react";
 
 export interface AuthContext {
     user:           User | null;
@@ -15,4 +17,9 @@ export interface AuthContext {
     ) => Promise<void>;
 
     logout: () => void;
+}
+
+
+export const useAuth = () => {
+    return useContext(AuthContext);
 }
