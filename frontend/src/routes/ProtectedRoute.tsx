@@ -1,20 +1,22 @@
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../hooks/UseAuth";
+import Loading from "../components/Loading";
 
-interface ProtectedRoutesProps {
-    children: React.ReactNode
+interface ProtectedRouteProps {
+    children: React.ReactNode;
 }
 
-export function ProtectedRoutes({
+export function ProtectedRoute({
     children,
-}: ProtectedRoutesProps) {
-    const {isAuthenticated, loading} = useAuth();
+}: ProtectedRouteProps) {
 
-    if(loading){
-        return <h1>Carregando a página...</h1>
+    const { isAuthenticated, loading } = useAuth();
+
+    if (loading) {
+        return <Loading />;
     }
 
-    if(!isAuthenticated){
+    if (!isAuthenticated) {
         return <Navigate to="/login" />;
     }
 
