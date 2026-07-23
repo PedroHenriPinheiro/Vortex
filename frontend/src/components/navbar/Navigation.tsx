@@ -10,7 +10,7 @@ export default function Navigation() {
 
             {" | "}
 
-            <Link to="/createAd">Anunciar</Link>
+            <Link to="/create-ad">Anunciar</Link>
 
             { 
                 isAuthenticated && (
