@@ -1,5 +1,9 @@
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import { ProtectedRoute } from "./ProtectedRoute";
+import Home from "../pages/Home";
+import Login from "../pages/Login";
+import Register from "../pages/Register";
+import Profile from "../pages/Profile";
 
 export function AppRoutes() {
     return(
