@@ -26,7 +26,7 @@ export function AppRoutes() {
                     />
 
                     <Route 
-                        path="/adsList" 
+                        path="/ads-list" 
                         element={<AdsList/>}
                     />
 

@@ -6,7 +6,7 @@ export default function Navigation() {
 
     return (
         <div>
-            <Link to="/adsList">Explorar</Link>
+            <Link to="/ads-list">Explorar</Link>
 
             {" | "}
 
