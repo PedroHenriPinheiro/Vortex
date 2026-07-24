@@ -8,7 +8,7 @@ export default function Navigation() {
         "text-sm font-medium text-text-secondary hover:text-brand-royal transition-colors";
 
     return (
-        <nav className="flex items-center gap-6">
+        <nav className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
             <Link to="/ads-list" className={linkClass}>Explorar</Link>
             <Link to="/create-ad" className={linkClass}>Anunciar</Link>
 
