@@ -1,5 +1,5 @@
 import type {Request, Response} from "express";
-import { getAdsService, getAdServiceById, deleteAdService, createAdService} from "../services/AdService.js";
+import { getAdsService, getAdServiceById, deleteAdService, createAdService, getMyAdsService} from "../services/AdService.js";
 import { createAdSchema } from "../schema/AdSchema.js";
 
 export const createAd = async (req: Request, res: Response) => {
@@ -72,6 +72,25 @@ export const getAdById = async(
         });
     }
 }
+
+export const getMyAds = async (
+    req: Request, 
+    res: Response
+) => {
+    try {
+        const userId = (req as any).user?.id ?? (req as any).user?.sub;
+
+        if (!userId) {
+            return res.status(401).json({ message: "Usuário não autenticado." });
+        }
+
+        const ads = await getMyAdsService(userId);
+        return res.status(200).json(ads);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: "Erro interno." });
+    }
+};
 
 export const deleteAd = async (req: Request, res: Response) => {
     try {

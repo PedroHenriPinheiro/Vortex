@@ -8,7 +8,7 @@ import Profile from "../pages/Profile";
 import CreateAd from "../pages/CreateAd";
 import AdsList from "../pages/AdsList";
 import AdDetails from "../pages/AdDetails"
-import MyAds from "../pages/MyAds";
+import MyAds from "../pages/MyAds/index";
 // import NotFound from "../pages/NotFound"; se tiver tempo implemento...
 import AppLayout from "../layouts/AppLayout";
 import AuthLayout from "../layouts/AuthLayout";

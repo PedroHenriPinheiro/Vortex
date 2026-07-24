@@ -17,7 +17,7 @@ export default function Navigation() {
                     <>
                         {" | "}
 
-                        <Link to="/myAds">Meus Anúncios</Link>
+                        <Link to="/my-ads">Meus Anúncios</Link>
                     </>
                 )
             }

@@ -17,9 +17,12 @@ export const createAd = async (
 
 export const getAds = async (): Promise<Ad[]> => {
 
-    const response = await api.get<Ad[]>(
-        "/ads"
-    );
+    const response = await api.get<Ad[]>("/ads");
 
+    return response.data;
+};
+
+export const getMyAds = async (): Promise<Ad[]> => {
+    const response = await api.get<Ad[]>("/ads/my-ads");
     return response.data;
 };

@@ -29,11 +29,22 @@ export const getAdServiceById = async (id: string) => {
     });
 };
 
-export const deleteAdService = async(id: string) => {
-    return await prisma.ads.findUnique({
+export const getMyAdsService = async (
+    userId: string
+) => {
+    return await prisma.ads.findMany({
         where: {
-            id
-        }
-    })
+            userId,
+        },
+        orderBy: {
+            createdAt: "desc",
+        },
+    });
+};
+
+export const deleteAdService = async (id: string) => {
+    return await prisma.ads.delete({
+        where: { id }
+    });
 };
 
