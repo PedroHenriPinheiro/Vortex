@@ -15,3 +15,5 @@ export const createAdSchema = z.object({
     isDonation: z.boolean().optional()
 
 });
+
+export const updateAdSchema = createAdSchema.partial();

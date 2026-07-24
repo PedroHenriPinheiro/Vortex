@@ -1,6 +1,6 @@
 import type {Request, Response} from "express";
-import { getAdsService, getAdServiceById, deleteAdService, createAdService, getMyAdsService} from "../services/AdService.js";
-import { createAdSchema } from "../schema/AdSchema.js";
+import { getAdsService, getAdServiceById, deleteAdService, createAdService, getMyAdsService, updateAdService} from "../services/AdService.js";
+import { createAdSchema, updateAdSchema} from "../schema/AdSchema.js";
 
 export const createAd = async (req: Request, res: Response) => {
     try {
@@ -103,6 +103,45 @@ export const deleteAd = async (req: Request, res: Response) => {
     } catch (error) {
         console.error(error);
 
+        res.status(500).json({ message: "Erro interno." });
+    }
+};
+
+export const updateAd = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params;
+        const userId = (req as any).user?.id ?? (req as any).user?.sub;
+
+        if (!userId) {
+            return res.status(401).json({ message: "Usuário não autenticado." });
+        }
+
+        const existingAd = await getAdServiceById(id);
+
+        if (!existingAd) {
+            return res.status(404).json({ message: "Anúncio não encontrado." });
+        }
+
+        if (existingAd.userId !== userId) {
+            return res.status(403).json({ message: "Você não tem permissão para editar este anúncio." });
+        }
+
+        const parsed = updateAdSchema.parse(req.body);
+        const ad = await updateAdService(id, parsed);
+
+        return res.status(200).json({
+            message: "Anúncio atualizado com sucesso.",
+            ad
+        });
+    } catch (error: any) {
+        if (error.name === "ZodError") {
+            return res.status(400).json({
+                message: "Dados inválidos.",
+                errors: error.errors
+            });
+        }
+
+        console.error(error);
         res.status(500).json({ message: "Erro interno." });
     }
 };

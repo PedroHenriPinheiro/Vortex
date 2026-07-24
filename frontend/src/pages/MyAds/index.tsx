@@ -1,22 +1,49 @@
+import { getMyAds, deleteAd } from "../../services/AdService";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import type { Ad } from "../../types/Ad";
 import Loading from "../../components/Loading";
-import { getMyAds } from "../../services/AdService";
+import type { Ad } from "../../types/Ad";
 
 export default function MyAds() {
     const [ads, setAds] = useState<Ad[]>([]);
+
     const [loading, setLoading] = useState(true);
+
     const [error, setError] = useState(false);
+
+    const [deletingId, setDeletingId] = useState<string | null>(null);
+
+    const navigate = useNavigate();
 
     const loadAds = async () => {
         try {
             const response = await getMyAds();
-            setAds(response);
+            setAds(Array.isArray(response) ? response : []);
         } catch (error) {
             console.error(error);
             setError(true);
         } finally {
             setLoading(false);
+        }
+    };
+
+    const handleEdit = (id: string) => {
+        navigate(`/edit-ad/${id}`);
+    };
+
+    const handleDelete = async (id: string) => {
+        const confirmed = window.confirm("Tem certeza que deseja excluir este anúncio?");
+        if (!confirmed) return;
+
+        setDeletingId(id);
+        try {
+            await deleteAd(id);
+            setAds((prev) => prev.filter((ad) => ad.id !== id));
+        } catch (error) {
+            console.error(error);
+            alert("Erro ao excluir anúncio.");
+        } finally {
+            setDeletingId(null);
         }
     };
 
@@ -57,8 +84,16 @@ export default function MyAds() {
                     <p>{ad.category}</p>
                     <p>{ad.isDonation ? "Doação" : `R$ ${ad.price}`}</p>
 
-                    <button>Editar</button>
-                    <button>Excluir</button>
+                    <button onClick={() => handleEdit(ad.id)}>
+                        Editar
+                    </button>
+
+                    <button
+                        onClick={() => handleDelete(ad.id)}
+                        disabled={deletingId === ad.id}
+                    >
+                        {deletingId === ad.id ? "Excluindo..." : "Excluir"}
+                    </button>
                 </div>
             ))}
         </main>

@@ -12,6 +12,7 @@ import MyAds from "../pages/MyAds/index";
 // import NotFound from "../pages/NotFound"; se tiver tempo implemento...
 import AppLayout from "../layouts/AppLayout";
 import AuthLayout from "../layouts/AuthLayout";
+import EditAd from "../pages/EditAd";
 
 export function AppRoutes() {
     return(
@@ -67,6 +68,11 @@ export function AppRoutes() {
                     <Route
                         path="/create-ad"
                         element={<CreateAd />}
+                    />
+
+                    <Route 
+                        path="/edit-ad/:id" 
+                        element={<EditAd />} 
                     />
 
                     <Route

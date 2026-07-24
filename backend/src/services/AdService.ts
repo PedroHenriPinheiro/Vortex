@@ -48,3 +48,9 @@ export const deleteAdService = async (id: string) => {
     });
 };
 
+export const updateAdService = async (id: string, data: any) => {
+    return await prisma.ads.update({
+        where: { id },
+        data
+    });
+};
