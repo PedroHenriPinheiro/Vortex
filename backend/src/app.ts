@@ -17,7 +17,7 @@ app.use(express.json());
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 app.use("/ads", adRoutes);   
-app.use("/me", meRoutes);    
+app.use("/me", authMiddlewares, meRoutes);    
 app.use("/me", authMiddlewares, meRoutes);
 
 export { app };
