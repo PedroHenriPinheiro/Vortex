@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { getAdById } from "../../services/AdService";
 import type { Ad } from "../../types/Ad"; 
 import Loading from "../../components/Loading"; 
+import toast from "react-hot-toast";
 
 export default function AdDetails() {
     const { id } = useParams();
@@ -93,7 +94,7 @@ export default function AdDetails() {
 
                         <button
                             className="mt-auto w-full rounded-btn bg-brand-royal text-white text-sm font-semibold py-3 hover:bg-brand-navy transition-colors"
-                            onClick={() => {alert("Adicionar Feature futuramente.")}}
+                            onClick={() => toast.success("Feature será adicionada futuramente!")}
                         >
                             Entrar em contato
                         </button>

@@ -2,6 +2,7 @@ import { useState } from "react";
 import {useNavigate} from "react-router-dom"
 import {register} from "../../services/UserService"
 import Navbar from "../../components/navbar";
+import toast from "react-hot-toast";
 
 export default function Register () {
     const navigate = useNavigate();
@@ -28,13 +29,13 @@ export default function Register () {
                 password
             );
 
-            alert("Usuário cadastrado com sucesso,.")
+            toast.success("Usuário cadastrado com sucesso,.")
 
             navigate("/login");
         } catch(error) {
             console.error(error)
 
-            alert("Erro ao cadastrar usuário.")
+            toast.error("Erro ao cadastrar usuário.")
         } finally {
             setLoading(false)
         }

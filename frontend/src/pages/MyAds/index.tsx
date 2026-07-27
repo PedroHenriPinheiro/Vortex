@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Loading from "../../components/Loading";
 import type { Ad } from "../../types/Ad";
+import toast from "react-hot-toast";
 
 export default function MyAds() {
     const [ads, setAds] = useState<Ad[]>([]);
@@ -41,7 +42,7 @@ export default function MyAds() {
             setAds((prev) => prev.filter((ad) => ad.id !== id));
         } catch (error) {
             console.error(error);
-            alert("Erro ao excluir anúncio.");
+            toast.error("Erro ao excluir anúncio.");
         } finally {
             setDeletingId(null);
         }

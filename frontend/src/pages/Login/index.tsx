@@ -2,6 +2,7 @@ import {useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/UseAuth";
 import Navbar from "../../components/navbar";
+import toast from "react-hot-toast";
 
 export default function Login () {
     const navigate = useNavigate();
@@ -34,7 +35,7 @@ export default function Login () {
         } catch(error) {
             console.error(error)
 
-            alert("Email ou senha inválidos.")
+            toast.error("Email ou senha inválidos.")
         } finally {
             setLoading(false);
         }

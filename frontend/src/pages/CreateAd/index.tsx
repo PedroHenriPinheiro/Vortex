@@ -2,6 +2,7 @@ import { useState } from "react";
 import { categories } from "../../constants/categories";
 import { createAd } from "../../services/AdService";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export default function CreateAd() {
 
@@ -27,7 +28,7 @@ export default function CreateAd() {
         const parsedPrice = isDonation ? undefined : Number(price);
 
         if (!isDonation && (price === "" || Number.isNaN(parsedPrice))) {
-            alert("Informe um preço válido.");
+            toast.success("Informe um preço válido.")}
             return;
         }
 
@@ -42,12 +43,11 @@ export default function CreateAd() {
                 imageUrl,
                 isDonation,
             });
-
-            alert("Anúncio criado");
+            toast.success("Anúncio criado.")}
             navigate("/my-ads");
         } catch (error) {
             console.error(error);
-            alert("Erro ao criar anúncio.");
+            toast.error("Erro ao criar anúncio.");
         } finally {
             setLoading(false);
         }

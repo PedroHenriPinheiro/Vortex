@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { categories } from "../../constants/categories";
 import { getAdById, updateAd } from "../../services/AdService";
 import Loading from "../../components/Loading";
+import toast from "react-hot-toast";
 
 export default function EditAd() {
     const { id } = useParams<{ id: string }>();
@@ -71,7 +72,7 @@ export default function EditAd() {
 
         if (!isDonation && (price === "" || Number.isNaN(parsedPrice))) {
 
-            alert("Informe um preço válido.");
+            toast.error("Informe um preço válido.");
 
             return;
 
@@ -90,7 +91,7 @@ export default function EditAd() {
                 isDonation,
             });
 
-            alert("Anúncio atualizado");
+            toast.success("Anúncio atualizado");
 
             navigate("/my-ads");
 
@@ -98,7 +99,7 @@ export default function EditAd() {
 
             console.error(err);
 
-            alert("Erro ao atualizar anúncio.");
+            toast.error("Erro ao atualizar anúncio.");
 
         } finally {
 
