@@ -28,7 +28,7 @@ export default function CreateAd() {
         const parsedPrice = isDonation ? undefined : Number(price);
 
         if (!isDonation && (price === "" || Number.isNaN(parsedPrice))) {
-            toast.success("Informe um preço válido.")}
+            toast.success("Informe um preço válido.")
             return;
         }
 
@@ -43,7 +43,7 @@ export default function CreateAd() {
                 imageUrl,
                 isDonation,
             });
-            toast.success("Anúncio criado.")}
+            toast.success("Anúncio criado.")
             navigate("/my-ads");
         } catch (error) {
             console.error(error);

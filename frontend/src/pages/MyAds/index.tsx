@@ -148,7 +148,6 @@ export default function MyAds() {
                     </div>
                 )}
 
-                {/* Botão flutuante - mobile */}
                 <button
                     onClick={() => navigate("/create-ad")}
                     className="sm:hidden fixed bottom-6 right-6 h-14 w-14 rounded-full bg-brand-royal text-white shadow-elevated flex items-center justify-center hover:bg-brand-navy transition-colors"
