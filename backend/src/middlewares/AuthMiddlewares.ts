@@ -8,26 +8,35 @@ export const authMiddlewares = (
 ) => {
     const authHeader = req.headers.authorization;
 
-    if(!authHeader) {
+    if (!authHeader) {
         return res.status(401).json({
-            message: "Token não informado"
-        })
+            message: "Token não informado."
+        });
     }
 
     const token = authHeader.split(" ")[1];
 
-    try{
-        const decode = jwt.verify(
-            token,
-            process.env.JWT_SECRET!
-        );
+    if (!token) {
+        return res.status(401).json({
+            message: "Token inválido."
+        });
+    }
 
-        (req as any).user = decode
+    const secret = process.env.JWT_SECRET;
 
-        next()
+    if (!secret) {
+        throw new Error("JWT_SECRET não foi configurado.");
+    }
+
+    try {
+        const decode = jwt.verify(token, secret);
+
+        (req as any).user = decode;
+
+        next();
     } catch {
         return res.status(401).json({
             message: "Token inválido."
-        })
+        });
     }
-}
+};

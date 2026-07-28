@@ -96,6 +96,12 @@ export const deleteAd = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
 
+        if (!id || Array.isArray(id)) {
+            return res.status(400).json({
+                error: "ID inválido."
+            });
+        }
+
         const ad = await deleteAdService(id);
 
         return res.json({ message: "Anúncio removido", ad });
@@ -110,6 +116,12 @@ export const deleteAd = async (req: Request, res: Response) => {
 export const updateAd = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
+
+        if (!id || Array.isArray(id)) {
+            return res.status(400).json({
+                error: "ID inválido."
+            });
+        }
         const userId = (req as any).user?.id ?? (req as any).user?.sub;
 
         if (!userId) {
