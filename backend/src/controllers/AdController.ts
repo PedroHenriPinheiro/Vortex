@@ -62,6 +62,12 @@ export const getAdById = async(
     try{
         const {id} = req.params;
 
+        if (!id || Array.isArray(id)) {
+            return res.status(400).json({
+                error: "ID inválido."
+            });
+        }
+
         const ad = await getAdServiceById(id);
 
         return res.json(ad);
