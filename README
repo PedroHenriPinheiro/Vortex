@@ -1,0 +1,349 @@
+# UniMarket - Marketplace Universitário
+
+## Descrição do Projeto
+
+O UniMarket é um marketplace desenvolvido para alunos universitários, permitindo a compra, venda e doação de itens usados dentro do ambiente acadêmico. O objetivo do projeto é facilitar a reutilização de materiais entre estudantes, promovendo economia, sustentabilidade e integração da comunidade universitária.
+
+Entre os itens que podem ser anunciados estão:
+
+* Livros acadêmicos;
+* Notebooks e periféricos;
+* Calculadoras;
+* Jalecos;
+* Componentes eletrônicos;
+* Materiais de estudo;
+* Móveis e outros itens utilizados no ambiente universitário.
+
+O projeto foi desenvolvido como parte do processo seletivo do Laboratório VORTEX da Universidade de Fortaleza (UNIFOR).
+
+---
+
+## Funcionalidades
+
+### Usuários não autenticados
+
+* Visualizar anúncios cadastrados;
+* Visualizar os detalhes de um anúncio;
+* Criar uma conta;
+* Realizar login.
+
+### Usuários autenticados
+
+* Criar anúncios;
+* Visualizar seus próprios anúncios;
+* Visualizar perfil do usuário;
+* Editar anúncios;
+* Excluir anúncios;
+* Gerenciamento da sessão através de autenticação JWT.
+
+---
+
+## Tecnologias Utilizadas
+
+### Frontend
+
+* React
+* TypeScript
+* Vite
+* Tailwind CSS
+* React Router DOM
+* Axios
+* React Hot Toast
+* Context API
+* PWA (Progressive Web App)
+* Vite Plugin PWA
+
+### Backend
+
+* Node.js
+* TypeScript
+* Express
+* Prisma ORM
+* JWT (JSON Web Token)
+* Bcrypt
+* Zod
+* CORS
+
+### Banco de Dados
+
+* PostgreSQL
+* Supabase
+
+---
+
+## Estrutura do Projeto
+
+```text
+Vortex/
+
+├── Backend/
+│
+└── Frontend/
+```
+
+---
+
+## Como Executar o Projeto
+
+### Pré-requisitos
+
+Certifique-se de possuir instalado:
+
+* Node.js 
+* NPM
+* Conta no Supabase
+
+---
+
+## Backend
+
+### 1. Entrar na pasta do backend
+
+```bash
+cd Backend
+```
+
+### 2. Instalar as dependências
+
+```bash
+npm install
+```
+
+### 3. Configurar as variáveis de ambiente
+
+Crie um arquivo `.env` contendo:
+
+```env
+DATABASE_URL=
+
+JWT_SECRET=
+
+PORT=3333
+```
+
+---
+
+### 4. Executar as migrations
+
+```bash
+npx prisma migrate dev
+```
+
+---
+
+### 5. Gerar o Prisma Client
+
+```bash
+npx prisma generate
+```
+
+---
+
+### 6. Executar o servidor
+
+```bash
+npm run dev
+```
+
+Por padrão, o backend estará disponível em:
+
+```text
+http://localhost:3333
+```
+
+---
+
+## Frontend
+
+### 1. Entrar na pasta do frontend
+
+```bash
+cd Frontend
+```
+
+---
+
+### 2. Instalar as dependências
+
+```bash
+npm install
+```
+
+---
+
+### 3. Configurar as variáveis de ambiente
+
+Crie um arquivo `.env` contendo:
+
+```env
+VITE_API_URL=http://localhost:3333
+```
+
+---
+
+### 4. Executar o projeto
+
+```bash
+npm run dev
+```
+
+Por padrão, o frontend estará disponível em:
+
+```text
+http://localhost:5173
+```
+
+---
+
+
+## Estrutura do Projeto
+
+```text
+Vortex/
+
+├── Backend/
+│
+└── Frontend/
+```
+
+### Backend
+
+```text
+Backend/
+
+├── dist/
+├── node_modules/
+├── prisma/
+│
+├── src/
+│   ├── config/
+│   ├── controllers/
+│   ├── middlewares/
+│   ├── routes/
+│   ├── schema/
+│   ├── services/
+│   ├── types/
+│   ├── utils/
+│   ├── app.ts
+│   └── server.ts
+│
+├── package.json
+├── package-lock.json
+├── tsconfig.json
+└── README.md
+```
+
+### Frontend
+
+```text
+Frontend/
+
+├── node_modules/
+├── public/
+│
+├── src/
+│   ├── assets/
+│   ├── components/
+│   ├── constants/
+│   ├── context/
+│   ├── hooks/
+│   ├── layouts/
+│   ├── pages/
+│   │   ├── AdDetails/
+│   │   ├── AdsList/
+│   │   ├── CreateAd/
+│   │   ├── EditAd/
+│   │   ├── Home/
+│   │   ├── Login/
+│   │   ├── MyAds/
+│   │   ├── NotFound/
+│   │   ├── Profile/
+│   │   └── Register/
+│   │
+│   ├── routes/
+│   ├── services/
+│   ├── styles/
+│   ├── types/
+│   ├── utils/
+│   ├── App.tsx
+│   ├── App.css
+│   ├── index.css
+│   └── main.tsx
+│
+├── index.html
+├── package.json
+├── package-lock.json
+├── tsconfig.json
+├── tsconfig.app.json
+├── tsconfig.node.json
+├── vite.config.ts
+├── eslint.config.js
+└── README.md
+```
+
+
+---
+
+## Autenticação
+
+A autenticação foi implementada utilizando JWT.
+
+### Rotas Públicas
+
+```text
+GET /ads
+
+GET /ads/:id
+
+POST /auth
+
+POST /users
+```
+
+### Rotas Privadas
+
+```text
+POST /ads
+
+GET /ads/me
+
+PUT /ads/:id
+
+DELETE /ads/:id
+
+GET /me
+```
+
+
+---
+
+# Diário de Bordo da IA
+
+## Ferramentas Utilizadas
+
+Durante o desenvolvimento do projeto foram utilizadas as seguintes ferramentas de Inteligência Artificial:
+
+* ChatGPT (principal ferramenta utilizada)
+* GitHub Copilot (autocompletar código durante o desenvolvimento)
+
+---
+
+## Deploy
+
+### Frontend
+
+```text
+https://uniformarketplace.vercel.app/
+```
+
+### Backend
+
+```text
+https://vortex-production-6922.up.railway.app/
+```
+
+---
+
+## Autor
+
+Desenvolvido por Pedro Henrique Pinheiro de Oliveira para o processo seletivo do Laboratório VORTEX - Universidade de Fortaleza.
